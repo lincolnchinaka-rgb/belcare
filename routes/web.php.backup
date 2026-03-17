@@ -1,0 +1,16 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AmbulanceTrackingController;
+
+// Homepage
+Route::get('/', [HomeController::class, 'index']);
+
+// Ambulance tracking
+Route::get('/track/{id}', [AmbulanceTrackingController::class, 'show'])->name('track.ambulance');
+// API routes (temporary fix)
+Route::prefix('api')->group(function () {
+    Route::get('/facilities', [App\Http\Controllers\Api\FacilityController::class, 'index']);
+    Route::get('/facilities/nearest', [App\Http\Controllers\Api\FacilityController::class, 'nearest']);
+});
